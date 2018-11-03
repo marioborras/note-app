@@ -1,0 +1,31 @@
+body{
+    background-color: #6fb16f
+}
+.container {
+    font-size: 1.2em;
+    margin-top: 10%;
+    background-color: lightblue; 
+    border-radius: 10px
+}
+.todo-list {
+    padding-bottom: 10px
+    
+    
+}
+select {
+    width: 230px;
+    height: 50px;
+    
+}
+#notes  {
+   
+    margin: 10px
+}
+#notes button {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    margin-right: 5px
+}
