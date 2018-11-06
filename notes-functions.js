@@ -2,15 +2,11 @@
 const getSavedNotes = ()=> {
     //check for existing saved data
     const notesJSON = localStorage.getItem("notes")
-
-    if(notesJSON !== null){
-        return JSON.parse(notesJSON)
-    }else {
-        
-    return [] 
-    }
-
+return  notesJSON !== null ? JSON.parse(notesJSON) : []
+    
 }
+
+
 //remove a note from the list 
 const removeNote = (id) => {
     const noteIndex = notes.findIndex((note) =>  note.id === id)
@@ -40,12 +36,8 @@ const generateNoteDOM = (note) => {
     })
 
     //setup the note title text
-    if (note.title.length > 0){
-        textEl.textContent = note.title
-
-    }else {
-        textEl.textContent = "unnamed note"
-    }
+    note.title.length > 0 ? textEl.textContent = note.title : textEl.textContent = "unnamed note"
+    
     textEl.setAttribute("href",`/edit.html#${note.id}`)
     noteEl.appendChild(textEl)
     return noteEl
@@ -93,7 +85,7 @@ const sortNotes = (notes, sortBy) => {
 
 const renderNotes = (notes,filters)=>{
     notes = sortNotes(notes,filters.sortBy)
-    const filteredNotes = notes.filter((note) =>  note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
+    const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
 
     document.querySelector("#notes").innerHTML =""
     filteredNotes.forEach((note) => {
