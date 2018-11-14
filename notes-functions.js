@@ -1,8 +1,16 @@
+"use strict"
+
 //read existing notes from localStorage
 const getSavedNotes = ()=> {
     //check for existing saved data
     const notesJSON = localStorage.getItem("notes")
-return  notesJSON !== null ? JSON.parse(notesJSON) : []
+    try {
+            // if noteJSON !== null rewritten with falsy
+        return  notesJSON  ? JSON.parse(notesJSON) : []
+    } catch (e) {
+        return []
+    }
+
     
 }
 
@@ -84,14 +92,22 @@ const sortNotes = (notes, sortBy) => {
 //Render application notes
 
 const renderNotes = (notes,filters)=>{
+    const notesEl = document.querySelector("#notes")
     notes = sortNotes(notes,filters.sortBy)
     const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
 
-    document.querySelector("#notes").innerHTML =""
-    filteredNotes.forEach((note) => {
-      const noteEl = generateNoteDOM(note)
-        document.querySelector("#notes").appendChild(noteEl)
-    })
+    notesEl.innerHTML =""
+    if (filteredNotes.length > 0) {
+        filteredNotes.forEach((note) => {
+            const noteEl = generateNoteDOM(note)
+            notesEl.appendChild(noteEl)
+          })
+    }else {
+        const emptyMessage = document.createElement ('p')
+        emptyMessage.textContent = "No notes to show"
+        notesEl.appendChild(emptyMessage)
+    }
+    
 }
 
 //generate time stamp 

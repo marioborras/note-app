@@ -2,7 +2,7 @@ body{
     background-color: #6fb16f
 }
 .container {
-    width: 50%;
+    width: 80%;
     font-size: 1.2em;
     margin-top: 10%;
     background-color: lightblue; 
@@ -33,5 +33,6 @@ select {
 }
 #note-title, #note-body {
     margin-bottom: 10px;
-    width: 500px;
-}
+    min-width: 100%;
+    max-width: 100%;
+
